@@ -1,8 +1,9 @@
 # 🖥️👉🖥️ graffitty.nvim
 
-Neovim integration for Graffitty: navigate between Neovim splits, tmux panes,
-and Graffitty panes, and send text or file paths to another Graffitty pane.
-You can also copy to the clipboard for later.
+Neovim integration for Graffitty.
+
+- Navigate between Neovim splits, tmux panes, and Graffitty panes.
+- Send text or file paths to another Graffitty pane. You can also copy to the clipboard for later.
 
 <img src="https://user-images.githubusercontent.com/12980409/205471326-27ef838a-c164-42a7-a576-2f5af3be95a8.gif" width="100%"/>
 
@@ -109,6 +110,21 @@ modes, and tmux setup.
 4. Use `<C-_>` to copy into the clipboard. This uses Neovim's `+` register and requires a clipboard provider.
 5. Omitting the number (e.g. running `-`) will use the previous pane again. The builtin filetree initially targets its connected pane; otherwise, choose a pane first.
 
+### Recommended fyler.nvim settings
+
+Fyler uses `-` to go to the parent directory. If using the example key bindings above, disable that mapping and use `U` instead. This frees `-` for sending paths and keeps `u` available for undoing edits.
+
+```lua
+require("fyler").setup({
+  mappings = {
+    n = {
+      ["-"] = { disabled = true },
+      ["U"] = { action = "visit", args = { parent = true } },
+    },
+  },
+  -- ...
+})
+```
 
 ### Recommended Nvim-Tree settings
 
@@ -162,30 +178,3 @@ require("oil").setup({
   use_default_keymaps = false,
 })
 ```
-
-### Recommended fyler.nvim settings
-
-Fyler uses `-` to go to the parent directory. If using the example key bindings above, disable that mapping and use `U` instead. This frees `-` for sending paths and keeps `u` available for undoing edits. Fyler does not map `_` by default, so it needs no change.
-
-```lua
-require("fyler").setup({
-  mappings = {
-    n = {
-      ["-"] = { disabled = true },
-      ["U"] = { action = "visit", args = { parent = true } },
-    },
-  },
-  -- ...
-})
-```
-
-## Related project
-
-- [tmux-send.nvim](https://github.com/kiyoon/tmux-send.nvim) — the original plugin, for sending text and file paths to tmux panes.
-- [vim-slime](https://github.com/jpalardy/vim-slime)
-  - Differences: vim-slime focuses on sending to REPL for development, whereas graffitty.nvim is for more general purpose.
-  - graffitty.nvim can choose which pane to send, even in different tabs within the same session.
-  - graffitty.nvim uses the target pane's bracketed paste mode for a better experience (e.g. pasting code into vim)
-  - Use [treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) to select functions, classes, or blocks before sending.
-  - graffitty.nvim can send [Nvim-Tree](https://github.com/nvim-tree/nvim-tree) (and others) files with absolute path to another pane.
-- [vim-screenpaste](https://github.com/kiyoon/vim-screenpaste) if you're using screen.
