@@ -1,11 +1,11 @@
-# 🖥️👉🖥️ graffitty.nvim
+# graffitty.nvim
 
 Neovim integration for Graffitty.
 
 - Navigate between Neovim splits, tmux panes, and Graffitty panes.
 - Send text or file paths to another Graffitty pane. You can also copy to the clipboard for later.
 
-<img src="https://user-images.githubusercontent.com/12980409/205471326-27ef838a-c164-42a7-a576-2f5af3be95a8.gif" width="100%"/>
+[graffitty-nvim-demo.webm](https://github.com/user-attachments/assets/cab9b156-6620-4079-b1ee-11608bf0e714)
 
 - For **interactive development**, similar to Jupyter Notebook. You can paste your code on a bash shell or an ipython interpreter.
 - Uses bracketed paste when the target pane enables it, including in vim/neovim and ipython.
